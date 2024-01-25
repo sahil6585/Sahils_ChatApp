@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "786529293130",
+    "project_id": "sahil-s-app-9d1a9",
+    "storage_bucket": "sahil-s-app-9d1a9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:786529293130:android:696c9f97bdd066406427b3",
+        "android_client_info": {
+          "package_name": "com.example.sahils_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQ-OZrhD81B6FrKHGvIFGj_12KkbReDdQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
