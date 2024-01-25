@@ -1,7 +1,9 @@
     package com.example.sahils_app.Activity
 
+    import android.content.Context
     import android.content.DialogInterface
     import android.content.Intent
+    import android.content.SharedPreferences
     import androidx.appcompat.app.AppCompatActivity
     import android.os.Bundle
     import android.widget.Toast
@@ -15,6 +17,7 @@
 
         private lateinit var binding: ActivityLoginBinding
         lateinit var mAuth: FirebaseAuth
+        lateinit var shared: SharedPreferences
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
@@ -24,6 +27,14 @@
 
             mAuth = FirebaseAuth.getInstance()
 
+            shared=getSharedPreferences("USER", Context.MODE_PRIVATE)
+
+            if (shared.getBoolean("USER",false) && !shared.getString("eml","")!!.isEmpty())
+            {
+                startActivity(Intent(applicationContext,DashboardActivity::class.java))
+                finish()
+            }
+
             binding.registerbtn.setOnClickListener {
                 var i = Intent(applicationContext,RegisterActivity::class.java)
                 startActivity(i)
@@ -31,10 +42,20 @@
 
             binding.signinbtn.setOnClickListener {
 
+
                 var email = binding.email.text.toString()
                 var pass = binding.password.text.toString()
 
                 login(email,pass)
+
+
+                var i=Intent(applicationContext,ProfileActivity::class.java)
+                var editor:SharedPreferences.Editor = shared.edit()
+                editor.putBoolean("USER",true)
+                editor.putString("eml",email)
+                editor.putString("pass",pass)
+                editor.commit()
+                startActivity(i)
 
             }
         }

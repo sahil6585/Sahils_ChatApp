@@ -30,9 +30,10 @@ class ChattingActivity : AppCompatActivity() {
     lateinit var messageAdapter: MessageAdapter
     lateinit var messageList:ArrayList<Message>
     lateinit var mDbRef : DatabaseReference
-
+    lateinit var database: FirebaseDatabase
     var receiverRoom:String? = null
     var senderRoom:String? = null
+    var senderUid : String? =null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +42,7 @@ class ChattingActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        database = FirebaseDatabase.getInstance()
         messageList = ArrayList()
         messageAdapter = MessageAdapter(this,messageList)
         mDbRef= FirebaseDatabase.getInstance().getReference()
@@ -96,5 +98,64 @@ class ChattingActivity : AppCompatActivity() {
                 }
             binding.messageBox.setText("")
         }
+
+        var handler = Handler()
+        binding.messageBox.addTextChangedListener(object :TextWatcher{
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun afterTextChanged(p0: Editable?) {
+                database.reference.child("Presence")
+                    .child(senderUid)
+                    .setValue("typing...")
+                handler.removeCallbacksAndMessages(null)
+                handler.postDelayed(userStoppedTyping,1000)
+            }
+            var userStoppedTyping = Runnable {
+                database.reference.child("Presence")
+                    .child(senderUid)
+                    .setValue("Online")
+            }
+        })
+
+        senderUid= FirebaseAuth.getInstance().uid!!
+        database.reference.child("Presence").child(receiverUid!!)
+            .addValueEventListener(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if(snapshot.exists())
+                    {
+                        val status = snapshot.getValue(String::class.java)
+                        if (status == "offline")
+                        {
+                            binding.status.visibility = View.GONE
+                        }
+                        else{
+                            binding.status.setText(status)
+                            binding.status.visibility = View.VISIBLE
+                        }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {}
+            })
+    }
+
+/////////////////////////////////////////////////////////////////////////
+    override fun onResume() {
+        super.onResume()
+        val currentId = FirebaseAuth.getInstance().uid
+        database.reference.child("Presence")
+            .child(currentId!!)
+            .setValue("Online")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        val currentId = FirebaseAuth.getInstance().uid
+        database.reference.child("Presence")
+            .child(currentId!!)
+            .setValue("offline")
     }
 }
