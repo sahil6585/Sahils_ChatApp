@@ -55,9 +55,10 @@ class DashboardActivity : AppCompatActivity() {
                 var i= Intent(applicationContext,LoginActivity::class.java)
                 startActivity(i)
             }
-            R.id.Profile->
+            R.id.updateProfile->
             {
-                
+                var i= Intent(applicationContext,ProfileActivity::class.java)
+                startActivity(i)
             }
 
         }
