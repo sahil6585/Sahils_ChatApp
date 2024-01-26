@@ -2,6 +2,8 @@ package com.example.sahils_app.Model
 
 
 class Message {
+
+
         var message : String? = null
         var senderid : String? = null
 

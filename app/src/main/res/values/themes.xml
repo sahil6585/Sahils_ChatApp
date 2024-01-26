@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Sahils_App" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-       <item name="actionOverflowButtonStyle">@style/threedotcolor</item>
+        <item name="actionOverflowButtonStyle">@style/threedotcolor</item>
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
@@ -12,4 +12,13 @@
 
         <item name="tint">#FDFDFD</item>
     </style>
+
+    <style name="Theme.Sahils_App.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Sahils_App.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Sahils_App.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

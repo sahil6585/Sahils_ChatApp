@@ -5,15 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sahils_app.Model.Message
 import com.example.sahils_app.R
+import com.example.sahils_app.databinding.DeleteLayoutBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class MessageAdapter(var context: Context, var messageList:ArrayList<Message>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var  ITEM_RECEIVE = 1
     var  ITEM_SENT = 2
+    lateinit var messages: ArrayList<Message>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
@@ -67,6 +71,9 @@ class MessageAdapter(var context: Context, var messageList:ArrayList<Message>): 
             var viewHolder = holder as ReceiveViewHolder
             holder.receiveMessage.text=currentMessage.message
         }
+
+
+
     }
 
     class SentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -79,4 +86,5 @@ class MessageAdapter(var context: Context, var messageList:ArrayList<Message>): 
         var receiveMessage = itemView.findViewById<TextView>(R.id.message)
 
     }
+
 }
