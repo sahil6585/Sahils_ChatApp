@@ -65,23 +65,19 @@
           </LinearLayout>
       </androidx.appcompat.widget.Toolbar>
 
-      <LinearLayout
-          android:orientation="vertical"
-          android:layout_below="@id/toolbar"
-          android:id="@+id/linear01"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content">
+
+
 
           <androidx.recyclerview.widget.RecyclerView
               android:id="@+id/recyclerView"
               android:visibility="visible"
+              android:layout_below="@id/toolbar"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:paddingBottom="100dp"/>
-      </LinearLayout>
+              android:layout_height="wrap_content"
+              android:paddingBottom="120dp"/>
+
       <LinearLayout
           android:id="@+id/linear02"
-          android:layout_above="@id/linear01"
           android:layout_alignParentBottom="true"
           android:orientation="horizontal"
           android:background="@drawable/bottom_shpe"
@@ -129,13 +125,6 @@
                           android:layout_height="match_parent"/>
 
                   </LinearLayout>
-                  <ImageView
-                      android:id="@+id/attachment"
-                      android:padding="9dp"
-                      android:src="@drawable/attechment"
-                      android:layout_width="40dp"
-                      android:layout_height="40dp"
-                      app:tint="#5C5C5C" />
 
               </LinearLayout>
 
