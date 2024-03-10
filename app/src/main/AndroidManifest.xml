@@ -19,9 +19,7 @@
         <activity
             android:name=".Activity.ChattingActivity"
             android:exported="false" />
-        <activity
-            android:name=".Activity.ReqActivity"
-            android:exported="false" />
+
         <activity
             android:name=".Activity.ProfileActivity"
             android:exported="true" />

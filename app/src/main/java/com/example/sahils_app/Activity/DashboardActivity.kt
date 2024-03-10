@@ -8,12 +8,9 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import com.example.sahils_app.Adapter.MyAdapter
 
 import com.example.sahils_app.Fragments.FriendsFragment
-import com.example.sahils_app.Fragments.RequestFragment
 import com.example.sahils_app.R
 import com.example.sahils_app.databinding.ActivityDashboardBinding
 
@@ -27,19 +24,20 @@ class DashboardActivity : AppCompatActivity() {
         setContentView(view)
 
         setSupportActionBar(binding.tool)
-        binding.tab.setupWithViewPager(binding.viewpager)
-        setupdata()
+      /*  binding.tab.setupWithViewPager(binding.viewpager)*/
+      /*  setupdata()*/
+
+        supportFragmentManager.beginTransaction().replace(binding.frame.id,FriendsFragment()).commit()
 
         shared=getSharedPreferences("USER", Context.MODE_PRIVATE)
         Toast.makeText(applicationContext, "Welcome : "+shared.getString("eml","null"), Toast.LENGTH_SHORT).show()
     }
 
-    private fun setupdata() {
+   /* private fun setupdata() {
         var adapter = MyAdapter(supportFragmentManager)
-        adapter.adddata(RequestFragment(), "REQUESTS")
-        adapter.adddata(FriendsFragment(), "FRIENDS")
+        adapter.adddata(FriendsFragment(), "")
         binding.viewpager.adapter = adapter
-    }
+    }*/
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.option_menu,menu)

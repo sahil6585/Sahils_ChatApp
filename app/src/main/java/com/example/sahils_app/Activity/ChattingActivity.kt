@@ -1,16 +1,13 @@
 package com.example.sahils_app.Activity
 
 import android.annotation.SuppressLint
-import android.app.ProgressDialog
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.ScrollView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sahils_app.Adapter.MessageAdapter
 import com.example.sahils_app.Model.Message
@@ -42,6 +39,7 @@ class ChattingActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+
         database = FirebaseDatabase.getInstance()
         messageList = ArrayList()
         messageAdapter = MessageAdapter(this,messageList)
@@ -60,6 +58,7 @@ class ChattingActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
         supportActionBar!!.title = null
+
 
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter=messageAdapter
@@ -91,6 +90,7 @@ class ChattingActivity : AppCompatActivity() {
 
             var message = binding.messageBox.text.toString()
             var messageObject = Message(message,senderUid)
+
 
             mDbRef.child("chats").child(senderRoom!!).child("messages").push().setValue(messageObject)
                 .addOnSuccessListener {
@@ -158,4 +158,5 @@ class ChattingActivity : AppCompatActivity() {
             .child(currentId!!)
             .setValue("offline")
     }
+
 }

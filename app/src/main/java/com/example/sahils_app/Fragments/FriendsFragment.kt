@@ -12,17 +12,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sahils_app.Adapter.FriendAdapter
-import com.example.sahils_app.Adapter.RequestAdapter
 import com.example.sahils_app.Model.FriendModel
-import com.example.sahils_app.Model.UserViewModel
 import com.example.sahils_app.R
-import com.example.sahils_app.databinding.FragmentRequestBinding
+
 
 private lateinit var viewModel : FriendModel
 private lateinit var userRecyclerView: RecyclerView
 @SuppressLint("StaticFieldLeak")
 private lateinit var adapter : FriendAdapter
-private var binding: FragmentRequestBinding? = null
 
 class FriendsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
